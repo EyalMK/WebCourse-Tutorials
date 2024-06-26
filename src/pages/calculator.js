@@ -1,11 +1,13 @@
 import { ButtonElement } from '../classes/buttonElement'
-import { row } from '../utils';
+import { grid } from '../utils';
 
 class Calculator {
     constructor(labels, container) {
         this.labels = labels;
         this.container = container;
+        this.onHandleClick = this.onHandleClick.bind(this);
         container.innerHTML = ''; // Clears the content container
+        // TODO: add h1 title
         this.addMonitor(); // Adds the monitor to the app container
         this.addButtons(); // Adds the calculator buttons to the app containers
     };
@@ -17,14 +19,19 @@ class Calculator {
 
     // Adds buttons to a container
     addButtons = () => {
-        const btnHTML = this.labels.map((innerText) => {
+        const labelsGrid = grid();
+
+        this.labels.forEach((innerText) => {
             const cl = innerText === 'calculate' ? 'col-span-4' : '';
-            return new ButtonElement(`bg-blue-400 hover:bg-blue-600 text-white ${cl} py-1 rounded-md text-center text-lg font-bold cursor-pointer d-btn dark:bg-gray-500 dark:text-sky-50 dark:hover:bg-gray-400`,
+            const button = new ButtonElement(`bg-blue-400 hover:bg-blue-600 text-white ${cl} py-1 rounded-md text-center text-lg font-bold cursor-pointer d-btn dark:bg-gray-500 dark:text-sky-50 dark:hover:bg-gray-400`,
                 innerText,
-                () => onHandleClick()
+                () => this.onHandleClick,
+                true
             );
-        }).join(''); // Creates button HTML for each number
-        row(this.container, btnHTML); // Adds the buttons to a row in the container
+            labelsGrid.appendChild(button.getElement());
+        });
+
+        this.container.appendChild(labelsGrid);
     };
 
     // Handles button clicks for the calculator

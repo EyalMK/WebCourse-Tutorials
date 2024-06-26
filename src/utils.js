@@ -1,6 +1,7 @@
-const row = (container, content) => {
-    const row = `<div class='grid grid-cols-5 gap-2'>${content}</div>`;
-    container.insertAdjacentHTML('beforeend', row);
+const grid = () => {
+    const grid = document.createElement("div");
+    grid.classList.add(...processClassList("grid grid-cols-5 gap-2"));
+    return grid;
 }
 
 const processClassList = (classList) => {
@@ -8,6 +9,6 @@ const processClassList = (classList) => {
 }
 
 export {
-    row,
+    grid,
     processClassList
 }

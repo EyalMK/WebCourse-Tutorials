@@ -13,6 +13,10 @@ export class SVG extends Element {
     }
 
     toHTML() {
+        return this.#svg.outerHTML;
+    }
+
+    getElement() {
         return this.#svg;
     }
 }
