@@ -1,7 +1,12 @@
 const grid = () => {
-    const grid = document.createElement("div");
-    grid.classList.add(...processClassList("grid grid-cols-5 gap-2"));
-    return grid;
+    return createDiv("grid grid-cols-5 gap-2");
+}
+
+const createDiv = (classList, id="") => {
+    const div = document.createElement("div");
+    div.classList.add(...processClassList(classList));
+    div.id = id;
+    return div;
 }
 
 const processClassList = (classList) => {
@@ -10,5 +15,6 @@ const processClassList = (classList) => {
 
 export {
     grid,
+    createDiv,
     processClassList
 }

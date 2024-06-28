@@ -1,8 +1,5 @@
 import {
-    ButtonElement,
     Menu,
-    SVG,
-    ThemeHandler,
     Title
 } from "./classes";
 import { renderCalculator } from "./pages";

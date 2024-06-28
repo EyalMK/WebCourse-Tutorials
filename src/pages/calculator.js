@@ -55,6 +55,5 @@ class Calculator {
 }
 
 export const renderCalculator = () => {
-    const contentContainer = document.getElementById("content");
-    return new Calculator([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '**', 'calculate', 'clear'], contentContainer);
+    return new Calculator([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '**', 'calculate', 'clear'], document.getElementById("content"));
 }
