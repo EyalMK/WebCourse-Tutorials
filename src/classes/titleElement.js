@@ -1,8 +1,6 @@
 import { Element } from './element';
 
 export class Title extends Element {
-    #header;
-
     constructor(innerText, classes) {
         super("h1", innerText);
         this.innerText = innerText;

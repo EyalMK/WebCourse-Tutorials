@@ -8,16 +8,16 @@ export class AppRenderer {
     }
 
     renderApp(model, menuClasses, contentClasses) {
+        const appChildren = document.getElementById("pre-content");
         const menuElement = document.getElementById("menu-container");
-        menuElement.classList.add(...processClassList(menuClasses));
-
         const contentElement = document.getElementById("content");
-        contentElement.classList.add(...processClassList(contentClasses));
 
         this.$el.appendChild(menuElement);
+        this.$el.appendChild(appChildren);
         this.$el.appendChild(contentElement);
 
-        model['menu-container'].map(block => menuElement.appendChild(block.getObject())).join('');
+        model['menu-container'].map(block => menuElement.appendChild(block.getObject()));
+        appChildren.innerHTML += model['app-children'].map(block => block.toHTML()).join('');
         model['content'].map(block => contentElement.appendChild(block.getObject()));
     }
 }

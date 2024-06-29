@@ -1,5 +1,5 @@
 import { ButtonElement } from '../classes/buttonElement'
-import { grid } from '../utils';
+import { grid, createDiv } from '../utils';
 
 class Calculator {
     constructor(labels, container) {
@@ -52,6 +52,18 @@ class Calculator {
     }
 }
 
-export const renderCalculator = () => {
-    return new Calculator([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '**', 'calculate', 'clear'], document.getElementById("content"));
+export const renderCalculator = (app=null) => {
+    const content = document.getElementById('content');
+    let container = document.querySelector('#wrapper-content-container');
+    if (!container) {
+        container = createDiv("w-full bg-blue-100 p-2 dark:bg-gray-900", "wrapper-content-container");
+    } else {
+        content.innerHTML = '';
+    }
+    
+    const calculator = new Calculator([1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '+', '-', '*', '/', '**', 'calculate', 'clear'], container);
+    if (!app) {
+        return calculator;
+    }
+    content.appendChild(calculator.getObject());
 }
