@@ -63,10 +63,10 @@ export class Menu {
     
         // Creates menu items for both the dropdown and top menu
         this.menuItems.forEach(item => {
-            const hamburgerMenuBtn = new HamburgerMenuButton('block py-1 px-2', item.name, () => this.setView(item.view).bind(this));
+            const hamburgerMenuBtn = new HamburgerMenuButton('block py-1 px-2', item.name, () => this.setView(item.view));
             this.ddMenu.appendChild(hamburgerMenuBtn.getElement());
     
-            const topMenuBtn = new TopMenuButton('py-1 px-2', item.name, () => this.setView(item.view).bind(this));
+            const topMenuBtn = new TopMenuButton('py-1 px-2', item.name, () => this.setView(item.view));
             this.topMenu.appendChild(topMenuBtn.getElement());
         });
 
