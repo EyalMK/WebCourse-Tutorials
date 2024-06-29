@@ -1,4 +1,5 @@
 import { ButtonElement } from './buttonElement.js';
+import { Title } from './titleElement.js';
 import { renderAbout, renderCalculator, renderContact } from '../pages';
 import { SVG } from './svgElement.js';
 import { createDiv } from '../utils.js'; 
@@ -48,6 +49,8 @@ export class Menu {
 
     setView(text) {
         const app = document.getElementById('wrapper-content-container');
+        const preContent = document.getElementById('pre-content');
+        let pageTitle = text
         this.toggleMenu(true); // Hides the dropdown menu
 
         // Renders the selected view
@@ -57,7 +60,11 @@ export class Menu {
             renderAbout(app);
         } else if (text === 'Contact') {
             renderContact(app);
+        } else {
+            pageTitle = "404 - Page Not Found"
         }
+
+        preContent.innerHTML = (new Title(pageTitle, "text-3xl border-b-[10px] border-blue-300 pb-4")).toHTML();
     }
 
     renderMenu() {
