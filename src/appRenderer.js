@@ -17,7 +17,7 @@ export class AppRenderer {
         this.$el.appendChild(menuElement);
         this.$el.appendChild(contentElement);
 
-        menuElement.innerHTML = model['menu-container'].map(block => block.toHTML()).join('');
-        contentElement.innerHTML = model['content'].map(block => block.toHTML()).join('');
+        model['menu-container'].map(block => menuElement.appendChild(block.getObject())).join('');
+        model['content'].map(block => contentElement.appendChild(block.getObject()));
     }
 }

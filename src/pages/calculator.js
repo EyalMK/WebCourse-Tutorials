@@ -7,7 +7,6 @@ class Calculator {
         this.container = container;
         this.onHandleClick = this.onHandleClick.bind(this);
         container.innerHTML = ''; // Clears the content container
-        // TODO: add h1 title
         this.addMonitor(); // Adds the monitor to the app container
         this.addButtons(); // Adds the calculator buttons to the app containers
     };
@@ -25,7 +24,7 @@ class Calculator {
             const cl = innerText === 'calculate' ? 'col-span-4' : '';
             const button = new ButtonElement(`bg-blue-400 hover:bg-blue-600 text-white ${cl} py-1 rounded-md text-center text-lg font-bold cursor-pointer d-btn dark:bg-gray-500 dark:text-sky-50 dark:hover:bg-gray-400`,
                 innerText,
-                () => this.onHandleClick,
+                this.onHandleClick,
                 true
             );
             labelsGrid.appendChild(button.getElement());
@@ -39,7 +38,6 @@ class Calculator {
         const monitor = document.getElementById('monitor'); // Selects the monitor element
         const bac = monitor.innerText.trim(); // Gets the current text from the monitor
         const a = event.target.innerText; // Gets the text of the clicked button
-        console.log(a);
         if (a === 'clear') {
             monitor.innerText = ''; // Clears the monitor text
         } else if (a === 'calculate') {
@@ -49,8 +47,8 @@ class Calculator {
         }
     };
 
-    toHTML() {
-        return this.container.innerHTML;
+    getObject() {
+        return this.container;
     }
 }
 

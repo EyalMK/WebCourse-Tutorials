@@ -6,7 +6,6 @@ import { renderCalculator } from "./pages";
 
 export const model = {
     "menu-container": [
-        // Menu classes
         new Menu()
     ],
     "app-children": [
