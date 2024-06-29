@@ -7,7 +7,7 @@ export class AppRenderer {
         this.$el.classList.add(...processedClasses);
     }
 
-    renderApp(model, menuClasses, contentClasses) {
+    renderApp(model) {
         const appChildren = document.getElementById("pre-content");
         const menuElement = document.getElementById("menu-container");
         const contentElement = document.getElementById("content");

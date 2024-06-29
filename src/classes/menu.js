@@ -3,6 +3,7 @@ import { Title } from './titleElement.js';
 import { renderAbout, renderCalculator, renderContact } from '../pages';
 import { SVG } from './svgElement.js';
 import { createDiv } from '../utils.js'; 
+import { ThemeHandler } from './themeHandler.js';
 
 export class Menu {
     constructor() {
@@ -18,21 +19,6 @@ export class Menu {
         this.secondaryContainer.appendChild(this.ddMenu);
         this.secondaryContainer.appendChild(this.topMenu);
     }
-
-    toggleTheme = () => {
-        document.documentElement.classList.toggle('dark');
-    };
-
-    themeButtons = () => {
-        const toggleButtonContainer = createDiv("");        
-        const darkButton = new ButtonElement("dark:hidden block", "Dark", this.toggleTheme);
-        toggleButtonContainer.appendChild(darkButton.getElement());
-
-        const lightButton = new ButtonElement("hidden dark:block", "Light", this.toggleTheme);
-        toggleButtonContainer.appendChild(lightButton.getElement());
-
-        this.secondaryContainer.appendChild(toggleButtonContainer);
-    };
 
     toggleMenu(hide=false) {
         if (!hide) {
@@ -69,7 +55,6 @@ export class Menu {
 
     renderMenu() {
         const burgerBtn = new ButtonElement("block sm:hidden", "", () => {
-            console.log('Burger button clicked'); // Debugging line
             this.toggleMenu();
         });
 
@@ -91,7 +76,7 @@ export class Menu {
         });
 
         // Render theme
-        this.themeButtons();
+        this.secondaryContainer.appendChild((new ThemeHandler).getObject());
 
         return this.secondaryContainer;
     }
