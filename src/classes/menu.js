@@ -18,6 +18,21 @@ export class Menu {
         this.menuContainer.appendChild(this.topMenu);
     }
 
+    toggleTheme = () => {
+        document.documentElement.classList.toggle('dark');
+    };
+
+    themeButtons = () => {
+        const toggleButtonContainer = createDiv("");        
+        const darkButton = new ButtonElement("dark:hidden block", "Dark", this.toggleTheme);
+        toggleButtonContainer.appendChild(darkButton.getElement());
+
+        const lightButton = new ButtonElement("hidden dark:block", "Light", this.toggleTheme);
+        toggleButtonContainer.appendChild(lightButton.getElement());
+
+        this.menuContainer.appendChild(toggleButtonContainer);
+    };
+
     toggleMenu(hide=false) {
         if (!hide) {
             this.ddMenu.classList.toggle('hidden'); // Toggles hidden class on dropdown menu
@@ -69,6 +84,9 @@ export class Menu {
             const topMenuBtn = new TopMenuButton('py-1 px-2', item.name, () => this.setView(item.view));
             this.topMenu.appendChild(topMenuBtn.getElement());
         });
+
+        // Render theme
+        this.themeButtons();
 
         return this.menuContainer;
     }
