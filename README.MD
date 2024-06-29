@@ -1,1 +1,1 @@
-# Advanced Web Technologies course - Tutorial 3 (Tailwindcss - dynamic elements, dark/light mode and responsive menu)
+# Advanced Web Technologies course - Tutorials (Tailwindcss - dynamic elements, dark/light mode, responsive menu, etc...)
