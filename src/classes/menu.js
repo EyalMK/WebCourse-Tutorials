@@ -11,11 +11,11 @@ export class Menu {
             { name: 'Contact', view: 'Contact' }
         ];
 
-        this.menuContainer = document.getElementById("menu-container");
+        this.secondaryContainer = createDiv("bg-blue-700 dark:bg-blue-500 text-white p-4 flex justify-between dark:bg-gray-500", "wrapper-menu-container");
         this.ddMenu = createDiv("absolute top-[56px] left-0 bg-blue-300 p-3 hidden w-full dark:bg-gray-400", "ddMenu");
         this.topMenu = createDiv("justify-start gap-4 hidden sm:flex", "topMenu");
-        this.menuContainer.appendChild(this.ddMenu);
-        this.menuContainer.appendChild(this.topMenu);
+        this.secondaryContainer.appendChild(this.ddMenu);
+        this.secondaryContainer.appendChild(this.topMenu);
     }
 
     toggleTheme = () => {
@@ -30,7 +30,7 @@ export class Menu {
         const lightButton = new ButtonElement("hidden dark:block", "Light", this.toggleTheme);
         toggleButtonContainer.appendChild(lightButton.getElement());
 
-        this.menuContainer.appendChild(toggleButtonContainer);
+        this.secondaryContainer.appendChild(toggleButtonContainer);
     };
 
     toggleMenu(hide=false) {
@@ -47,14 +47,12 @@ export class Menu {
     }
 
     setView(text) {
-        const app = document.querySelector('#content');
-        // const header = document.querySelector('h1');
-        // header.innerText = text
+        const app = document.getElementById('wrapper-content-container');
         this.toggleMenu(true); // Hides the dropdown menu
 
         // Renders the selected view
         if (text === 'Calculator') {
-            renderCalculator();
+            renderCalculator(app);
         } else if (text === 'About') {
             renderAbout(app);
         } else if (text === 'Contact') {
@@ -73,7 +71,7 @@ export class Menu {
 
         burgerBtn.getElement().appendChild(burgerMenuIcon.getElement());
         burgerBtn.getElement().appendChild(burgerMenuCloseIcon.getElement());
-        this.menuContainer.insertBefore(burgerBtn.getElement(), this.menuContainer.firstChild);
+        this.secondaryContainer.insertBefore(burgerBtn.getElement(), this.secondaryContainer.firstChild);
     
     
         // Creates menu items for both the dropdown and top menu
@@ -88,7 +86,7 @@ export class Menu {
         // Render theme
         this.themeButtons();
 
-        return this.menuContainer;
+        return this.secondaryContainer;
     }
 
     getObject() {
